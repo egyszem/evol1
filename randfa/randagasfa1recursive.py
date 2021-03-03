@@ -33,7 +33,7 @@ def branch(actualx, actualy, actuallength, actualangle):  # ágrajzolás
         # kvázi görbület: a szögváltozás változása,  nagyon érzékeny a konkrét paraméterekre / = 0.0175 Pi = 3.15 fok
         # 5. paraméter: szakaszgörbület, itt 0.0175 Pi
         angle2 += curvature
-    angle += angle2
+        angle += angle2
         draw.line(((x, y, u, v)), fill=255, width= int(0.4 * l), joint="curved")
         x = u
         y = v
