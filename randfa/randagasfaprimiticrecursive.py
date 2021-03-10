@@ -2,49 +2,39 @@ from PIL import Image, ImageDraw
 import numpy as np
 import random
 
+random.seed()
 im = Image.new('L', (1800, 1600))
 
 draw = ImageDraw.Draw(im)
-w = 1800
-h = 1600
-q = 0.7     # 1. paraméter: ágrövidülési koefficiens
-diff = 0.16 * np.pi   # 2. paraméter: új ágak fisz szögelfordulása
-random.seed()
-startx = w // 2
-starty = h - 1
-startlength = 800.0  #3. paraméter: kezdeti ághossz
-startangle = 0.5 * np.pi
 
-def branch(actualx, actualy, actuallength, actualangle, actualdiff = diff):
-    x = actualx
-    y = actualy
-    l = actuallength
-    angle = actualangle
-    diff1 = actualdiff
-    u = int(x + np.cos(angle) * l)
-    v = int(y - np.sin(angle) * l)
-    # branchlist.remove((actualx, actualy, actuallength, actualangle, diff1)) # kivalasztott ag torlese a listarol
+WIDTH = 1800
+HEIGHT = 1600
+CONTRACTION = 0.7  # parameter 1: contraction rate
+ANGLE_TURN = 0.16 * np.pi  # parameter 2: fix angle turn for new branches
+START_X = WIDTH // 2
+START_Y = HEIGHT - 1
+START_LENGTH = 1000.0  # parameter 3: initial branch length
+START_ANGLE = 0.5 * np.pi
+BRANCH_NUMBER = 2
+MIN_BRANCH_LENGTH = 125
+
+
+def branch(x, y, length, angle, angle_turn):
+    u = int(x + np.cos(angle) * length)
+    v = int(y - np.sin(angle) * length)
     draw.line(((x, y, u, v)), fill=255, width=10, joint="None")
-    branchnumber = random.randint(1, 3)  # 4. paraméter: max leágazásszám
-    if random.randint(0, 1) == 0:  # random jobbra vagy balra?
-        diff1 = -diff1
-    l = int(q * l)
+    angle_turn = random.choice((-angle_turn, angle_turn))
+    length = CONTRACTION * length
     r = 0
-    if l > 15:  # 5. paraméter: minimális ághossz
-        for i in range(0, branchnumber):
-            r = random.randint(r, l)
-            diff1 = -diff1
+    if length > MIN_BRANCH_LENGTH:
+        for i in range(0, BRANCH_NUMBER):
+            r = random.uniform(r, length)
+            angle_turn = -angle_turn
             u = int(x + np.cos(angle) * r)
             v = int(y - np.sin(angle) * r)
-            #branchlist.append((u, v, l, angle + diff1, diff1))  # uj agak kiindulopontjainak felvetele a listara
-            branch(u, v, l, angle + diff1, diff1)
-    return
+            branch(u, v, length, angle + angle_turn, angle_turn)
 
 
-while len(branchlist) > 0:
-    r = random.randint(0, len(branchlist) - 1)
-    (startx, starty, startlength, startangle, diff1) = branchlist[r]  # random agkiindulas valasztasa
-    branch(startx, starty, startlength, startangle, diff1)  # ag megrajzolasa
-print(len(branchlist))
+branch(START_X, START_Y, START_LENGTH, START_ANGLE, random.choice((ANGLE_TURN, -ANGLE_TURN)))  # ag megrajzolasa
 im.show()
-im.save("randagasfaprimitiv4.jpg")
+im.save("randagasfaprimitiv5.jpg")

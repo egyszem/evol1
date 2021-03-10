@@ -10,7 +10,7 @@ draw = ImageDraw.Draw(im)
 w = 1800
 h = 1600
 n = 10
-q = 0.80                        # 1. paraméter: szakaszrövidülési kvóciens alsó határa
+q = 0.88                        # 1. paraméter: szakaszrövidülési kvóciens alsó határa
 random.seed()
 startx = w // 2
 starty = h - 1
@@ -30,7 +30,7 @@ def branch(actualx, actualy, actuallength, actualangle):  # ágrajzolás
     # 3. paraméter: legkisebb szakaszhossz
         u = int(x + l * np.cos(angle))
         v = int(y - l * np.sin(angle))
-        l = int((q + 0.06 * random.randint(0,2)) * l)  # 4. paraméter: szakaszrövidülési kvóciens intervalluma: itt q = 0.88...0.94
+        l = int((q + 0.06 * random.randint(0,2)) * l)  # 4. paraméter: szakaszrövidülési kvóciens intervalluma: itt CONTRACTION = 0.88...0.94
         curvature = 0.0001 * (random.randint(0, 1000) - 501) * np.pi
         # kvázi görbület: a szögváltozás változása,  nagyon érzékeny a konkrét paraméterekre / = 0.0175 Pi = 3.15 fok
         # 5. paraméter: szakaszgörbület, itt 0.0175 Pi

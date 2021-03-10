@@ -55,8 +55,11 @@ for j in range(0, w):
         if sss > zmax:
             zmax = sss
 print("teljes valség: ", zzz, "nnn = ", n, w * h, "max ", zmax)
-
-#im.show()
+for j in range(0, w):
+    for k in range(0, h):
+        if (dist[99][j][k] > 0):
+            im.putpixel((j, k), 127)
+im.show()
 #im.save("randwalkdistribution.jpg")
 
 
