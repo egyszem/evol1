@@ -18,7 +18,7 @@ START_Y = HEIGHT - 1
 START_LENGTH = 80.0  # parameter 3: 1. starting section length
 START_ANGLE = 0.5 * np.pi
 MIN_LENGTH = 6.0  # parameter 4: smallest section length: with 2.0 it looks fuzzy, with 10.0 clean
-CURVATURE_MAX = 0.002 * np.pi  # parameter 5: curvature max = 0.035 pi = 6.3 degrees
+CURVATURE_MAX = 0.04 * np.pi  # parameter 5: curvature max = 0.035 pi = 6.3 degrees
 BRANCH_ANGLE = 0.25 * np.pi  # parameter 6: max branching angle
 BRANCHING_PROBABILITY = 0.2  # parameter 7: probability of branching
 

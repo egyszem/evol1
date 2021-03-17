@@ -20,6 +20,18 @@ seed = st.sidebar.slider(
 random.seed(seed)
 np.random.seed(seed)
 
+start_length = st.sidebar.slider(
+    'Select initial length',
+    40, 200,
+    value=[100]
+)[0]
+
+min_length = st.sidebar.slider(
+    'Select minimal length',
+    4, 20,
+    value = [6]
+)[0]
+
 curvature_step = st.sidebar.slider(
     'Select curvature step (* pi)',
     0.01, 0.6,
@@ -38,8 +50,9 @@ branching_angle = st.sidebar.slider(
     value=[0.45]
 )[0] * np.pi
 
-
 params = tree_for_demoing.Params(
+    start_length=start_length,
+    min_length=min_length,
     curvature_step=curvature_step,
     branching_probability=branching_probability,
     branching_angle=branching_angle,

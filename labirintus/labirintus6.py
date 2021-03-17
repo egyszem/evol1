@@ -6,7 +6,7 @@ import random
 
 
 class Block:
-    def __init__(self, x_left: int, x_right: int, y_bottom: int, y_top: int):
+    def __init__(self, x_left, x_right, y_bottom, y_top):
         self.x_left = x_left
         self.x_right = x_right
         self.y_bottom = y_bottom
@@ -32,7 +32,7 @@ def split_side(a: int, b: int) -> Tuple:
             is_valid(a, divide), is_valid(divide + wall_width, b))
 
 
-def is_vertical(block) -> bool:  # fuggolegesen kell-e ketteosztani
+def is_vertical(block) -> bool:
     p = block.x_right - block.x_left
     q = block.y_top - block.y_bottom
     return random.randint(1, p + q) < p

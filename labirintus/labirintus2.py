@@ -45,7 +45,7 @@ while len(blocklist) > 0:
         rightblock = bigblock
         rightblock.x_left = leftblock.x_right + wall_width + 1
         print ('l ', leftblock.x_left, leftblock.x_right, leftblock.y_bottom, leftblock.y_top,
-               'm ', middleblock.x_left, middleblock.x_right, middleblock.y_bottom, middleblock.y_top,
+               'number_of_lines ', middleblock.x_left, middleblock.x_right, middleblock.y_bottom, middleblock.y_top,
                'r ', rightblock.x_left, rightblock.x_right, rightblock.y_bottom, rightblock.y_top)
         if leftblock.x_right - leftblock.x_left > minimalblock_width: # ha eleg szeles
             blocklist.append(leftblock) # leftblock felvetele a listara
@@ -69,7 +69,7 @@ while len(blocklist) > 0:
         upperblock = bigblock
         upperblock.y_bottom = lowerblock.y_top + wall_width + 1
         print ('l ', lowerblock.x_left, lowerblock.x_right, lowerblock.y_bottom, lowerblock.y_top,
-               'm ', middleblock.x_left, middleblock.x_right, middleblock.y_bottom, middleblock.y_top,
+               'number_of_lines ', middleblock.x_left, middleblock.x_right, middleblock.y_bottom, middleblock.y_top,
                'u ', upperblock.x_left, upperblock.x_right, upperblock.y_bottom, upperblock.y_top)
         if lowerblock.y_top - lowerblock.y_bottom > minimalblock_width: # ha eleg szeles
             blocklist.append(lowerblock) # lowerblock felvetele a listara

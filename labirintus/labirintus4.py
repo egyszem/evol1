@@ -1,12 +1,14 @@
 from typing import Tuple
-
+from dataclasses import dataclass
+from PIL import Image
+from PIL import ImageDraw
 import numpy as np
 import matplotlib.pyplot as plt
 import random
 
 
 class Block:
-    def __init__(self, x_left: int, x_right: int, y_bottom: int, y_top: int):
+    def __init__(self, x_left, x_right, y_bottom, y_top):
         self.x_left = x_left
         self.x_right = x_right
         self.y_bottom = y_bottom
