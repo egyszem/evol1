@@ -1,3 +1,4 @@
+"másodrendben random vonalak, kifutásvédelemmel"
 import random
 from dataclasses import dataclass
 
@@ -9,7 +10,7 @@ from PIL import ImageDraw
 class Params:
     width: int = 2000
     height: int = 1600
-    turn: int = 300
+    turn: int = 400
     angle: float = 0.0
     length = 10
     number_of_lines: int = 1
@@ -30,14 +31,14 @@ def drawline(params: Params) -> None:
     while i < params.road:
         i += 1
         s = ""
-        g = (np.abs(u) + 1) * (np.abs(u) + 2) // 2
-        h = (np.abs(v) + 1) * (np.abs(v) + 2) // 2
-        if x in range (g, params.width - g):
+        max_u_deviation = (np.abs(u) + 1) * (np.abs(u) + 2) // 2
+        max_v_deviation = (np.abs(v) + 1) * (np.abs(v) + 2) // 2
+        if x in range (max_u_deviation, params.width - max_u_deviation):
             w = random.choice((-1, 1))
         else:
             w = np.sign(half_width - x)
             s = s + "H"
-        if y in range(h, params.height - h):
+        if y in range(max_v_deviation, params.height - max_v_deviation):
             z = random.choice((-1, 1))
         else:
             z = np.sign(half_height - y)
@@ -54,3 +55,4 @@ for k in range(0, par.turn):
     par.angle = 2 * np.pi * k / par.turn
     drawline(par)
 im.show()
+im.save("images.line2.jpg")

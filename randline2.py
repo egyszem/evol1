@@ -5,13 +5,14 @@ import numpy as np
 import random
 import utils
 
-val = input("random seed: ")
+#val = input("random seed: ")
+val = 777
 random.seed(val)
 WIDTH = 1800
 HEIGHT = 1600
 MIN_STEP = 2.81
-RAY = 40
-N = 20
+RAY = 80
+N = 50
 GENERATION = 10
 
 im = Image.new('L', (WIDTH, HEIGHT))
