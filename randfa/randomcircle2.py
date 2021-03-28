@@ -87,26 +87,27 @@ def drawcircle(params: Params):
 
     return dmin
 
-
 im = Image.new('L', (Params.width, Params.height))
 draw = ImageDraw.Draw(im)
 params = Params
-for kk in range(0, 10):
+circle_count = 10
+trial_count = 10
+for kk in range(0, circle_count):
     params.version = 0
     dmaxmin = 0
-    seed = 0
-    for j in range(0, 10):
-        params.randseed = 300 * kk + j
+    for j in range(0, trial_count):
+        random.seed()
+        params.randseed = random.randint(0, 1000)
         d = drawcircle(params)
         if d > dmaxmin:
             dmaxmin = d
-            seed = 300 * kk + j
+            seed = params.randseed
     params.version = 1
     params.randseed = seed
     d = drawcircle(params)
-    print(np.sqrt(dmaxmin), np.sqrt(d))
+    #print(np.sqrt(dmaxmin), np.sqrt(d))
 im.show()
-im.save("random.korok2.jpg")
+im.save("images/random.korok3.jpg")
 im.close()
 
 
